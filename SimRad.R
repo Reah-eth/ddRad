@@ -7,7 +7,7 @@
 #### contact: reah.gonzales@usys.ethz.ch                                                                                      #####
 #################################################################################################################################:)
 
-### Since this code in usually implemented on an offline server check to ensure you have all the package dependancies for the SimRad package 
+### Since this code in usually implemented on an external server check to ensure you have all the package dependancies for the SimRad package 
 ### If you do not have all the packages, Start from here 
 .libPaths()
 install.packages("BiocManager")
