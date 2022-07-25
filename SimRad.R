@@ -3,6 +3,8 @@ install.packages("BiocManager")
 BiocManager::install("Biostrings")
 BiocManager::install("ShortRead")
 install.packages("SimRAD")
+
+library(SimRAD)
 ### Example3: a double digestion (ddRAD)
 
 #### If you have already a reference assembly 
@@ -19,27 +21,40 @@ P1_3 <- "CGA"
 P2_5 <- "G"
 P2_3 <- "AATTC"
 
-simseq.dig <- insilico.digest(simseq, P1_5, P1_3, P2_5 , P2_3, verbose=TRUE)
+simseq.dig <- insilico.digest(simseq, P1_5, P1_3, P2_5 , P2_3, verbose=TRUE) ## the larger the prop.contig the longer this process requires 
 
-#### Result 
+#### Result when prop.contig=0.1
 ## Number of restriction sites for the first enzyme: 53145
 ## Number of restriction sites for the second enzyme: 2994
+
+#### Result when prop.contig=0.2
+### Number of restriction sites for the first enzyme: 2231748
+### Number of restriction sites for the second enzyme: 141088
+
 
 simseq.sel <- adapt.select(simseq.dig, type="AB+BA", P1_5, P1_3, P2_5 , P2_3)
 
 
-# wide size selection (200-270):
-wid.simseq <- size.select(simseq.sel,  min.size = 400, max.size = 610, graph=F, verbose=TRUE)
+# wide size selection (400-610):
+wid.simseq <- size.select(simseq.sel,  min.size = 500, max.size = 610, graph=F, verbose=TRUE)
 
-##### result 
+##### result when prop.contig=0.1
 ## 683 fragments between 400 and 610 bp
 
+#### Result when prop.contig=0.2
+## 15539 fragments between 500 and 610 
+### 15539 (fragments between 400 and 610 bp at 20% of halploid genome used) * 10 = 155,390 fragments
 
 # narrow size selection (210-260):
 nar.simseq <- size.select(simseq.sel,  min.size = 400, max.size = 610, graph=F, verbose=TRUE)
 
-##### Result 
+##### Result when prop.contig=0.1 
 ### 683 fragments between 400 and 610 bp
+
+##### Result when prop.contig=0.2
+### 15539 fragments between 500 and 610 bp
+
+### 15539 (fragments between  500 and 610 bp at 20% of halploid genome used)* 10= 155,390 fragments 
 
 
 #### the resulting fragment characteristics can be further examined:
