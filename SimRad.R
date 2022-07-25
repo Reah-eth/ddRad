@@ -6,7 +6,7 @@ install.packages("SimRAD")
 ### Example3: a double digestion (ddRAD)
 
 #### If you have already a reference assembly 
-simseq <- ref.DNAseq("ddRad/Kyus.fa",prop.contigs=0.5)
+simseq <- ref.DNAseq("ddRad/Kyus.fa",prop.contigs=0.2)
 
 
 #Restriction Enzyme 1
