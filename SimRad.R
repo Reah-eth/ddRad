@@ -1,14 +1,27 @@
+###################################################################################################################################
+#### Title: Fragment simulation with "SimRAD"                                                                                 #####      
+#### Description: This script can be used to similate the number of fragments to be expected when the ddRad protocal is used. #####
+####              Here the genome assemply of Kyus is used for (tape station) peak size of 500 to 610                         #####
+#### Author: Reah Gonzales                                                                                                    #####
+#### Date: 25-07-2022                                                                                                         #####
+#### contact: reah.gonzales@usys.ethz.ch                                                                                      #####
+#################################################################################################################################:)
+
+### Since this code in usually implemented on an offline server check to ensure you have all the package dependancies for the SimRad package 
+### If you do not have all the packages, Start from here 
 .libPaths()
 install.packages("BiocManager")
 BiocManager::install("Biostrings")
 BiocManager::install("ShortRead")
 install.packages("SimRAD")
 
+### If all the packages and the "SimRAD" package is already downloaded start here
 library(SimRAD)
 ### Example3: a double digestion (ddRAD)
 
-#### If you have already a reference assembly 
-simseq <- ref.DNAseq("ddRad/Kyus.fa",prop.contigs=0.2)
+### the reference assembly should be downloaded if not used the "sim.DNAseq" 
+
+seq <- ref.DNAseq("ddRad/Kyus.fa",prop.contigs=0.2)
 
 
 #Restriction Enzyme 1
@@ -21,7 +34,7 @@ P1_3 <- "CGA"
 P2_5 <- "G"
 P2_3 <- "AATTC"
 
-simseq.dig <- insilico.digest(simseq, P1_5, P1_3, P2_5 , P2_3, verbose=TRUE) ## the larger the prop.contig the longer this process requires 
+simseq.dig <- insilico.digest(seq, P1_5, P1_3, P2_5 , P2_3, verbose=TRUE) ## the larger the prop.contig the longer this process requires 
 
 #### Result when prop.contig=0.1
 ## Number of restriction sites for the first enzyme: 53145
